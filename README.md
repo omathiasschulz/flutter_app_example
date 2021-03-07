@@ -1,16 +1,25 @@
 # flutter_app_example
 
-A new Flutter project.
+Um simples projeto flutter
 
-## Getting Started
+## Rodar a aplicação
 
-This project is a starting point for a Flutter application.
+Run > Run Without Debugging ou Shift+F9
 
-A few resources to get you started if this is your first Flutter project:
+## Detecção de Fake News
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Uma tela para o cadastro da notícia
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Uma tela para ver o número de notícias verificadas, com a quantidade de falsas e verdadeiras notícias
+
+Uma tela sobre as informações do desenvolvedor e apoiadores
+
+Cálculos:
+
+Quando for realizar a detecção o resultado é realizado de forma aleatória, com 50% de change de ser verdadeira e 50% de change de ser falsa
+
+Além disso, quando informa a notícia incrementa o número de notícias verificadas e incrementa a quantidade de falsas/verdadeiras notícias
+
+Splash Screen:
+
+A Splash Screen é utilizada no carregamento antes de informar se a notícia é verdadeira ou falsa
