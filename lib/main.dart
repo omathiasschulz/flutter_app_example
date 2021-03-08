@@ -168,7 +168,6 @@ class PageVerificacao extends StatelessWidget {
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 validator: (String value) {
-                  print(value);
                   if (value.length == 0) {
                     return 'O preenchimento do campo de e-mail é obrigatório';
                   }
@@ -198,7 +197,7 @@ class PageVerificacao extends StatelessWidget {
                       return showDialog(
                         context: context,
                         builder: (ctx) => AlertDialog(
-                          title: Text('Notícia verificada com sucesso! '),
+                          title: Text('Verificação'),
                           content: Text(mensagem),
                           actions: <Widget>[
                             TextButton(
@@ -233,11 +232,17 @@ validaNoticia(var _noticia) {
 
   // gera um número randômico que pode ser 0 ou 1
   var rng = new Random();
-  print(rng.nextInt(2));
+  var typeNews = rng.nextInt(2);
+  print('Tipo da notícia: ' + typeNews.toString());
+  print('[1 - Fake news | 0 - True news]');
+
   // se o número for 1 é uma fake news
   // se o número for 0 é uma true news
-
-  return 'Notícia identificada como fake news';
+  if (typeNews == 1) {
+    return 'Notícia identificada como fake news! ';
+  } else {
+    return 'Notícia identificada como fake news! ';
+  }
 }
 
 // pagina de informações sobre as notícias
