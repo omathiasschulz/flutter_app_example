@@ -16,10 +16,14 @@ Uma tela sobre as informações do desenvolvedor e apoiadores
 
 Cálculos:
 
-Quando for realizar a detecção o resultado é realizado de forma aleatória, com 50% de change de ser verdadeira e 50% de change de ser falsa
+Quando for realizar a detecção o resultado é realizado de forma aleatória, com 50% de chance de ser verdadeira e 50% de chance de ser falsa
 
 Além disso, quando informa a notícia incrementa o número de notícias verificadas e incrementa a quantidade de falsas/verdadeiras notícias
 
 Splash Screen:
 
-A Splash Screen é utilizada no carregamento antes de informar se a notícia é verdadeira ou falsa
+A Splash Screen é utilizada no carregamento do aplicativo e possui uma duração de 4 segundos
+
+Assets:
+
+Os assets são as imagens que são utilizadas nas telas do aplicativo
