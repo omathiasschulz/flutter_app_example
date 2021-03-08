@@ -7,6 +7,8 @@ void main() => runApp(MyApp());
 const optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 // número de notícias verificadas
 var numNoticias = 5789;
+var numNoticiasTrue = 3567;
+var numNoticiasFalse = 2222;
 
 // widget principal da aplicação
 class MyApp extends StatelessWidget {
@@ -179,32 +181,24 @@ class PageVerificacao extends StatelessWidget {
                     labelText: 'E-mail',
                 ),
               ),
-              // botão
+              // botão validar
               Padding(
                 padding: EdgeInsets.only(top: 16, left: 250),
                 child: ElevatedButton(
                   onPressed: () {
+                    // valida se os campos foram preenchidos corretamente
                     if (_formKey.currentState.validate()) {
-                      // informa uma mensagem de sucesso
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('Notícia verificada com sucesso! '),
-                        action: SnackBarAction(label: 'Fechar', onPressed:(){}),
-                      ));
-                      // apresenta as informações da notícia
-                      print('=> Informações da notícia: ');
-                      print('Título: ${_noticia.titulo}');
-                      print('Texto: ${_noticia.texto}');
-                      print('E-mail: ${_noticia.email}');
                       _formKey.currentState.save();
                       numNoticias += 1;
                       // reseta o formulário
                       _formKey.currentState.reset();
+                      var mensagem = validaNoticia(_noticia);
                       // apresenta o alerta se a notícia é fake ou não
                       return showDialog(
                         context: context,
                         builder: (ctx) => AlertDialog(
-                          title: Text('Verificação'),
-                          content: Text('Fake news ou não'),
+                          title: Text('Notícia verificada com sucesso! '),
+                          content: Text(mensagem),
                           actions: <Widget>[
                             TextButton(
                               onPressed: () {
@@ -217,7 +211,7 @@ class PageVerificacao extends StatelessWidget {
                       );
                     }
                   },
-                  child: Text('Gravar'),
+                  child: Text('Validar'),
                 ),
               ),
             ],
@@ -226,6 +220,17 @@ class PageVerificacao extends StatelessWidget {
       ),
     );
   }
+}
+
+// método responsável por validar se a notícia é fake ou não
+validaNoticia(var _noticia) {
+  // apresenta as informações da notícia
+  print('=> Informações da notícia: ');
+  print('Título: ${_noticia.titulo}');
+  print('Texto: ${_noticia.texto}');
+  print('E-mail: ${_noticia.email}');
+
+  return 'Notícia identificada como fake news';
 }
 
 // pagina de informações sobre as notícias
