@@ -89,14 +89,31 @@ class PageVerificacao extends StatelessWidget {
             children: [
               // verificacao
               Text('Verificação', style: optionStyle),
-              // campo nome
+              // campo titulo
               TextFormField(
-                keyboardType: TextInputType.multiline,
-                minLines: 6,
-                maxLines: null,
+                keyboardType: TextInputType.text,
                 validator: (String value) {
                   if (value.length == 0) {
-                    return 'O campo de nome é obrigatório';
+                    return 'O preenchimento do campo de título é obrigatório';
+                  }
+                  return null;
+                },
+                onSaved: (String value) {
+                  this._noticia.titulo = value;
+                },
+                decoration: InputDecoration(
+                    hintText: 'Título da notícia',
+                    labelText: 'Título',
+                ),
+              ),
+              // campo texto
+              TextFormField(
+                keyboardType: TextInputType.multiline,
+                minLines: 3,
+                maxLines: 6,
+                validator: (String value) {
+                  if (value.length == 0) {
+                    return 'O preenchimento do campo de texto é obrigatório';
                   }
                   return null;
                 },
@@ -104,71 +121,53 @@ class PageVerificacao extends StatelessWidget {
                   this._noticia.texto = value;
                 },
                 decoration: InputDecoration(
-                    hintText: '',
+                    hintText: 'Texto da notícia',
                     labelText: 'Texto',
                 ),
               ),
-              // // campo cpf
-              // TextFormField(
-              //   keyboardType: TextInputType.text,
-              //   validator: (String value) {
-              //     print(value);
-              //     if (value.length != 11) {
-              //       return 'O campo de CPF é obrigatório e deve possuir 11 caracteres';
-              //     }
-              //     return null;
-              //   },
-              //   onSaved: (String value) {
-              //     this._usuario.cpf = value;
-              //   },
-              //   decoration: InputDecoration(
-              //       hintText: 'xxxyyyzzzww',
-              //       labelText: 'CPF (Sem pontuação)',
-              //   ),
-              // ),
-              // // campo email
-              // TextFormField(
-              //   keyboardType: TextInputType.name,
-              //   validator: (String value) {
-              //     print(value);
-              //     if (value.length == 0) {
-              //       return 'O campo de e-mail é obrigatório';
-              //     }
-              //     return null;
-              //   },
-              //   onSaved: (String value) {
-              //     this._usuario.email = value;
-              //   },
-              //   decoration: InputDecoration(
-              //       hintText: 'nome@servidor',
-              //       labelText: 'E-mail',
-              //   ),
-              // ),
-              // // botão
-              // Padding(
-              //   padding: EdgeInsets.only(top: 16, left: 250),
-              //   child: ElevatedButton(
-              //     onPressed: () {
-              //       if (_formKey.currentState.validate()) {
-              //         // informa uma mensagem de sucesso
-              //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              //           content: Text('Vacinação registrada com sucesso! '),
-              //           action: SnackBarAction(label: 'Fechar', onPressed:(){}),
-              //         ));
-              //         // apresenta algumas informações
-              //         print('=> Cadastro do usuário: ');
-              //         print('Nome: ${_usuario.nome}');
-              //         print('E-mail: ${_usuario.email}');
-              //         print('CPF: ${_usuario.cpf}');
-              //         _formKey.currentState.save();
-              //         numVacinas += 1;
-              //         // reseta o formulário
-              //         _formKey.currentState.reset();
-              //       }
-              //     },
-              //     child: Text('Gravar'),
-              //   ),
-              // ),
+              // campo email
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                validator: (String value) {
+                  print(value);
+                  if (value.length == 0) {
+                    return 'O preenchimento do campo de e-mail é obrigatório';
+                  }
+                  return null;
+                },
+                onSaved: (String value) {
+                  this._noticia.email = value;
+                },
+                decoration: InputDecoration(
+                    hintText: 'nome@servidor',
+                    labelText: 'E-mail',
+                ),
+              ),
+              // botão
+              Padding(
+                padding: EdgeInsets.only(top: 16, left: 250),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState.validate()) {
+                      // informa uma mensagem de sucesso
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Notícia verificada com sucesso! '),
+                        action: SnackBarAction(label: 'Fechar', onPressed:(){}),
+                      ));
+                      // apresenta as informações da notícia
+                      print('=> Informações da notícia: ');
+                      print('Título: ${_noticia.titulo}');
+                      print('Texto: ${_noticia.texto}');
+                      print('E-mail: ${_noticia.email}');
+                      _formKey.currentState.save();
+                      numNoticias += 1;
+                      // reseta o formulário
+                      _formKey.currentState.reset();
+                    }
+                  },
+                  child: Text('Gravar'),
+                ),
+              ),
             ],
           ),
         ),
