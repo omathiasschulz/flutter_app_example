@@ -1,17 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 void main() => runApp(MyApp());
 
 // style dos titulos
 const optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 // número de notícias verificadas
-var numNoticias = 19897;
+var numNoticias = 5789;
 
 // widget principal da aplicação
 class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Start(),
+      home: HomePage(),
+    );
+  }
+}
+
+// splash screen
+class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        SplashScreen(
+          seconds: 4,
+          gradientBackground: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Colors.teal[100],
+              Colors.teal[900],
+            ],
+          ),
+          navigateAfterSeconds: Start(),
+          loaderColor: Colors.transparent,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('imagens/logo.png'),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
