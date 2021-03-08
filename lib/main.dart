@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'dart:math';
 
 void main() => runApp(MyApp());
 
@@ -229,6 +230,12 @@ validaNoticia(var _noticia) {
   print('Título: ${_noticia.titulo}');
   print('Texto: ${_noticia.texto}');
   print('E-mail: ${_noticia.email}');
+
+  // gera um número randômico que pode ser 0 ou 1
+  var rng = new Random();
+  print(rng.nextInt(2));
+  // se o número for 1 é uma fake news
+  // se o número for 0 é uma true news
 
   return 'Notícia identificada como fake news';
 }
