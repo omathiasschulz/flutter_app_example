@@ -299,20 +299,32 @@ class PageSobre extends StatelessWidget {
                 child: Text('Sobre', style: optionStyle),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 30, bottom: 30),
+                padding: EdgeInsets.only(top: 30, bottom: 10),
                 child: Align(
-                  alignment: Alignment.center,
+                  alignment: Alignment.centerLeft,
                   child: Text(
-                    'Mathias Artur Schulz',
+                    'Desenvolvido por: \n\t\t\t\t\tMathias Artur Schulz',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
               Image.asset(
                 'imagens/logo.png',
+                width: 150,
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 20),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Em parceira com: \n\t\t\t\t\tGoverno Federal',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
               Image.asset(
                 'imagens/governo.jpg',
+                width: 200,
               ),
             ],
           ),
