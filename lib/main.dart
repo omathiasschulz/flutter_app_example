@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     return Stack(
       children: <Widget>[
         SplashScreen(
-          seconds: 4,
+          seconds: 1,
           gradientBackground: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
@@ -199,6 +199,22 @@ class PageVerificacao extends StatelessWidget {
                       numNoticias += 1;
                       // reseta o formulário
                       _formKey.currentState.reset();
+                      // apresenta o alerta se a notícia é fake ou não
+                      return showDialog(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          title: Text('Verificação'),
+                          content: Text('Fake news ou não'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(ctx).pop();
+                              },
+                              child: Text('Ok'),
+                            ),
+                          ],
+                        ),
+                      );
                     }
                   },
                   child: Text('Gravar'),
