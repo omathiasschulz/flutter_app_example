@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     return Stack(
       children: <Widget>[
         SplashScreen(
-          seconds: 1,
+          seconds: 4,
           gradientBackground: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
@@ -189,7 +189,6 @@ class PageVerificacao extends StatelessWidget {
                     // valida se os campos foram preenchidos corretamente
                     if (_formKey.currentState.validate()) {
                       _formKey.currentState.save();
-                      numNoticias += 1;
                       // reseta o formulário
                       _formKey.currentState.reset();
                       var mensagem = validaNoticia(_noticia);
@@ -235,14 +234,16 @@ validaNoticia(var _noticia) {
   var typeNews = rng.nextInt(2);
   print('Tipo da notícia: ' + typeNews.toString());
   print('[1 - Fake news | 0 - True news]');
+  numNoticias += 1;
 
   // se o número for 1 é uma fake news
   // se o número for 0 é uma true news
   if (typeNews == 1) {
-    return 'Notícia identificada como fake news! ';
-  } else {
-    return 'Notícia identificada como fake news! ';
+    numNoticiasFalse += 1;
+    return 'Notícia identificada como uma falsa notícia! ';
   }
+  numNoticiasTrue += 1;
+  return 'Notícia identificada como uma verdadeira notícia! ';
 }
 
 // pagina de informações sobre as notícias
@@ -265,12 +266,15 @@ class PageInformacoes extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 30),
                 child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Número de notícias verificadas: '
-                       + numNoticias.toString(),
-                    style: TextStyle(fontSize: 20),
-                  ),
+                  alignment: Alignment.topLeft,
+                  child: Column (children: [
+                    Text(
+                      '\nNúmero de notícias verificadas: ' + numNoticias.toString()
+                      + '\n\nNúmero de notícias verdadeiras: ' + numNoticiasTrue.toString()
+                      + '\n\nNúmero de notícias falsas: ' + numNoticiasFalse.toString(),
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ]),
                 ),
               ),
             ],
